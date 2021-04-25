@@ -1,5 +1,3 @@
-import java.io.IOException;
-
 /**
  * Superclass for menus
  */
@@ -9,6 +7,7 @@ import java.io.IOException;
  *
  */
 public class Menu implements MenuAttributes {
+	// Protected string to hold the ID of the menu
 	protected String id;
 	
 	/**
@@ -20,7 +19,7 @@ public class Menu implements MenuAttributes {
 	}
 	
 	/**
-	 * Clears the console by printing many empty lines.
+	 * Mimics clearing the console by printing many empty lines.
 	 */
 	protected void clear() {
 		for(int i = 0; i < 50; i++) {
@@ -53,8 +52,7 @@ public class Menu implements MenuAttributes {
 
 	@Override
 	public void display() throws InterruptedException {
-		System.out.println("If you are seeing this you messed up.");
-		
+		System.out.println("This should not be called either.");
 	}
 
 	@Override

@@ -22,7 +22,7 @@ public class MainMenu extends Menu {
 	@Override
 	public void display() throws InterruptedException {
 		// Time between each menu clear (seconds)
-		int waitTime = 4;
+		int waitTime = 6;
 		
 		// Clear and print display information
 		clear();
@@ -38,6 +38,7 @@ public class MainMenu extends Menu {
 		clear();
 		printBanner("Casino - Front Desk");
 		userPrint("Front Desk Assistant", "How can I help you today?");
+		
 		System.out.println("1. I'd like to play a game.");
 		System.out.println("2. I need to log in to my Employee Account.");
 		System.out.println("3. Goodbye!");
