@@ -1,5 +1,11 @@
 import java.util.Scanner;
 
+/**
+ * 
+ * @author Nick
+ *
+ */
+
 public class InputManager {
 	public static int GetMenuOptionInput(int max) {
 		Scanner scanner = new Scanner(System.in);
