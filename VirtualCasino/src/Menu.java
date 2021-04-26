@@ -65,6 +65,6 @@ public class Menu implements MenuAttributes {
 	
 	@Override
 	public void sleep(int waitTime) throws InterruptedException {
-		TimeUnit.SECONDS.sleep(waitTime);
+		TimeUnit.MILLISECONDS.sleep(waitTime);
 	}
 }

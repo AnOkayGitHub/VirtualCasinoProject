@@ -1,4 +1,3 @@
-import java.io.IOException;
 
 /**
  * Interface For Menus.
@@ -27,5 +26,10 @@ public interface MenuAttributes {
 	 */
 	public String getID();
 	
+	/**
+	 * 
+	 * @param waitTime In milliseconds
+	 * @throws InterruptedException  Used for the sleep functionality.
+	 */
 	public void sleep(int waitTime) throws InterruptedException;
 }

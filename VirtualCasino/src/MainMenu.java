@@ -22,7 +22,7 @@ public class MainMenu extends Menu {
 	@Override
 	public void display() throws InterruptedException {
 		// Time between each menu clear (seconds)
-		int waitTime = 1;
+		int waitTime = 1000;
 		
 		// Clear and print display information
 		clear();
