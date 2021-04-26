@@ -20,7 +20,11 @@ public class GameSelectMenu extends Menu {
 	@Override
 	public void display() {
 		clear();
-		System.out.println("Select a game: ");
+		printBanner("Casino - Game Select Lobby");
+		userPrint("Front Desk Assistant", "Which game would you like to play?");
+		
+		System.out.println("1. Slot Machine");
+		System.out.println("2. Blackjack.");
 	}
 
 }
