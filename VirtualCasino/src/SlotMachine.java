@@ -6,7 +6,7 @@ public class SlotMachine extends Machine {
 	private Scanner input = new Scanner(System.in);
 	
 	public SlotMachine(int someMoney) {
-		money = someMoney;
+		super(someMoney);
 		isWorking = true;
 	}
 	
@@ -47,10 +47,12 @@ public class SlotMachine extends Machine {
 		
 		System.out.println("How much money would you like to bet: ");
 		
-		while(betAmmount = 0) {
+		while(betAmmount == 0) {
 			try {
-				betAmmount = input.nextLine();
-			}catch(Exception e)
+				betAmmount = Integer.parseInt(input.nextLine());
+			}catch(Exception e) {
+				
+			}
 		}
 		
 		
