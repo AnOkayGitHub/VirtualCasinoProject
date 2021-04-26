@@ -10,13 +10,14 @@ public class Casino {
 	private static Menu[] menus;
 	private static Menu currentMenu;
 	
+	
+	
 	/**
 	 * Initializes the casino.
 	 * @throws InterruptedException
 	 */
 	public static void Initialize() throws InterruptedException {
-		menus = new Menu[] { new MainMenu("Main"), new GameSelectMenu("GameSelect"), new ExitMenu("Exit"), 
-				new EmployeeLoginMenu("ELogin"), new SlotMachineMenu("SlotMachine") };
+		menus = new Menu[] { new MainMenu("Main"), new GameSelectMenu("GameSelect") };
 		currentMenu = menus[0];
 		
 		currentMenu.display();
