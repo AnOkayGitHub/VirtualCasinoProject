@@ -1,4 +1,4 @@
-import java.util.concurrent.TimeUnit;
+
 
 /**
  * Main Menu Child
@@ -22,7 +22,7 @@ public class MainMenu extends Menu {
 	@Override
 	public void display() throws InterruptedException {
 		// Time between each menu clear (seconds)
-		int waitTime = 4;
+		int waitTime = 1;
 		
 		// Clear and print display information
 		clear();
@@ -44,8 +44,24 @@ public class MainMenu extends Menu {
 		System.out.println("2. I need to log in to my Employee Account.");
 		System.out.println("3. Goodbye!");
 		
-		sleep(waitTime / 2);
-		goTo("GameSelect");
+		int choice = InputManager.GetMenuOptionInput(3);
+		
+		userPrint("Front Desk Assistant", "Right this way!");
+		sleep(waitTime);
+		
+		switch(choice) {
+			case 1:
+				goTo("GameSelect");
+				break;
+			case 2:
+				goTo("ELogin");
+				break;
+			case 3:
+				goTo("Exit");
+				break;
+			default:
+				break;
+		}
 	}
 
 }
