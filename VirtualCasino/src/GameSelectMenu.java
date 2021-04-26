@@ -33,7 +33,7 @@ public class GameSelectMenu extends Menu {
 			goTo("SlotMachine");
 			break;
 		case 2:
-			goTo("");
+			goTo("Blackjack");
 			break;
 		default:
 			break;

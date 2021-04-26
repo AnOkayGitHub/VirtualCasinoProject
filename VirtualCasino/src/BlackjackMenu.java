@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
-public class Blackjack extends Menu {
+public class BlackjackMenu extends Menu {
 	private int money;
 	private boolean isWorking;			//random chance for machine to break
 	private Scanner input = new Scanner(System.in);
 	
 	
 
-	public Blackjack(String id) {
+	public BlackjackMenu(String id) {
 		super(id);
 		isWorking = true;
 		money = 10000;
