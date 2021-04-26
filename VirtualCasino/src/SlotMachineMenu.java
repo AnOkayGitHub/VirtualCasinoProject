@@ -13,10 +13,6 @@ public class SlotMachineMenu extends Menu {
 	
 	@Override
 	public void display() throws InterruptedException {
-		clear();
-		printBanner("Casino - Slot Machine");
-		userPrint("Front Desk Assistant", "Enjoy!");
-	
 		playGame();
 	}
 	
@@ -48,6 +44,9 @@ public class SlotMachineMenu extends Menu {
 		int betAmmount = 0;
 		for(int i = 0; i < grid.length; ++i)
 			grid[i] = (int) (1 + Math.random() * 7);
+		clear();
+		printBanner("Casino - Slot Machine");
+		userPrint("Front Desk Assistant", "Enjoy!");
 		
 		System.out.println("-------------------");
 		System.out.println("|  " + grid[0] + "     " + grid[1] + "     " + grid[2] + "  |");
@@ -79,7 +78,7 @@ public class SlotMachineMenu extends Menu {
 	
 	private void animate(int[] grid) throws InterruptedException {
 		
-		for(int i = 0; i < 60; i++) {
+		for(int i = 0; i < 30; i++) {
 			for(int j = 0; j < 3; j++) {
 				int temp = grid[grid.length - 1];
 				for(int k = grid.length - 1; k > 0; k --) {
@@ -90,13 +89,14 @@ public class SlotMachineMenu extends Menu {
 			
 			sleep(150);
 			clear();
+			clear();
+			printBanner("Casino - Slot Machine");
+			userPrint("Front Desk Assistant", "Enjoy!");
 			System.out.println("-------------------");
 			System.out.println("|  " + grid[0] + "     " + grid[1] + "     " + grid[2] + "  |");
 			System.out.println("|  " + grid[3] + "     " + grid[4] + "     " + grid[5] + "  |");
 			System.out.println("|  " + grid[6] + "     " + grid[7] + "     " + grid[8] + "  |");
 			System.out.println("-------------------");
 		}
-		
 	}
-	
 }
