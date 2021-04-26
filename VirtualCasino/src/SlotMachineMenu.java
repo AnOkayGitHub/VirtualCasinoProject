@@ -66,7 +66,7 @@ public class SlotMachineMenu extends Menu {
 		animate();
 		
 		userPrint("Machine", "Place your bet!");
-		betAmount = InputManager.GetMenuOptionInput(money);
+		betAmount = InputManager.GetIntegerFromUser(money);
 		
 		while(betAmount == 0) {
 			try {

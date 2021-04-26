@@ -26,7 +26,7 @@ public class GameSelectMenu extends Menu {
 		System.out.println("1. Slot Machine");
 		System.out.println("2. Blackjack.");
 		
-		int choice = InputManager.GetMenuOptionInput(2);
+		int choice = InputManager.GetIntegerFromUser(2);
 		
 		switch(choice) {
 		case 1:

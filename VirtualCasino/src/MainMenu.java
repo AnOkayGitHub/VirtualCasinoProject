@@ -44,7 +44,7 @@ public class MainMenu extends Menu {
 		System.out.println("2. I need to log in to my Employee Account.");
 		System.out.println("3. Goodbye!");
 		
-		int choice = InputManager.GetMenuOptionInput(3);
+		int choice = InputManager.GetIntegerFromUser(3);
 		
 		userPrint("Front Desk Assistant", "Right this way!");
 		sleep(waitTime);

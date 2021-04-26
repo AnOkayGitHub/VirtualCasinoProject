@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 
 public class InputManager {
-	public static int GetMenuOptionInput(int max) {
+	public static int GetIntegerFromUser(int max) {
 		Scanner scanner = new Scanner(System.in);
 
 		int choice = -1;
@@ -27,6 +27,32 @@ public class InputManager {
 				System.out.println(String.format("Invalid input. Please input a numeric value.", max));
 				choice = -1;
 			}
+			
+		}
+		return choice;
+	}
+	
+	public static String GetChoiceFromUser(String[] choices) {
+		Scanner scanner = new Scanner(System.in);
+		String choicesText = "";
+		
+		for(int i = 0; i < choices.length; i++) {
+			choicesText += choices[i] + ", ";
+		}
+		
+		String choice = "";
+		
+		while(choice.compareTo("") == 0) {
+			System.out.print(">: ");
+			choice = scanner.next();
+			
+			for(int i = 0; i < choices.length; i++) {
+				if(choices[i].toLowerCase().compareTo(choice.toLowerCase()) == 0) {
+					return choice;
+				}
+			}
+			System.out.println(String.format("Invalid input. Please input a valid option. (%s)", choicesText));
+			choice = "";
 			
 		}
 		return choice;

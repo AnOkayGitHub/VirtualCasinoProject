@@ -1,5 +1,9 @@
 import java.util.Scanner;
-
+/**
+ * 
+ * @author Matt, Nick
+ *
+ */
 public class BlackjackMenu extends Menu {
 	private int money;
 	private boolean isWorking;			//random chance for machine to break
@@ -49,36 +53,49 @@ public class BlackjackMenu extends Menu {
 	    int betAmount = 0;
 	    int cardTotal = card1 + card2;
 	    
-		System.out.println("How much money would you like to bet: ");
+	    clear();
+	    printBanner("Casino - Blackjack Table");
+		userPrint("Dealer", "How much money would you like to bet?");
 		
-		while(betAmount == 0) {
-			try {
-				betAmount = Integer.parseInt(input.nextLine());
-			}catch(Exception e) {
-				
-			}
-		}
-		System.out.println("The total of your two cards is: " + cardTotal);
+		betAmount = InputManager.GetIntegerFromUser(money);
+		
+		clear();
+		printBanner("Casino - Blackjack Table");
+		userPrint("Dealer", "The total of your two cards is: " + cardTotal + ".");
 		
 		while(isWorking = true) {
-		if (cardTotal < 21) {	
-		System.out.println("Do you want to hit? Say YES or NO.");
-		String response = input.nextLine();
-			if (response.equals(yes)) {
-				int card3 = (int) (1 + Math.random() * 10);
-				cardTotal += card3;
-				System.out.println("The new total of yours cards is: " + cardTotal);
+			
+			if (cardTotal < 21) {	
+				clear();
+				printBanner("Casino - Blackjack Table");
+				userPrint("Dealer", "Do you want to hit? (Yes/No)");
 				
+				String response = InputManager.GetChoiceFromUser(new String[] {"Yes", "No"});
+				if (response.toUpperCase().equals(yes)) {
+					int card3 = (int) (1 + Math.random() * 10);
+					cardTotal += card3;
+					clear();
+					printBanner("Casino - Blackjack Table");
+					userPrint("Dealer", "The new total of yours cards is: " + cardTotal);
+					sleep(3000);
+				} else {
+					// User does NOT want a hit
+					return;
+				}
+			
+			} else if (cardTotal > 21) {
+				clear();
+				printBanner("Casino - Blackjack Table");
+				userPrint("Dealer", "Sorry, you busted. Please try again.");
+				loseGame();
+				return;
+				
+			} else if (cardTotal == 21) {
+				clear();
+				printBanner("Casino - Blackjack Table");
+				userPrint("Dealer", "Congratulations, you got blackjack!");
+				return;
 			}
-		
-		} else if (cardTotal > 21) {
-		System.out.println("Sorry, you busted. Please try again.");
-		loseGame();
-		
-		}else if (cardTotal == 21) {
-		System.out.println("Congratulations, you got blackjack!");
+		}
 	}
-		
-}
-}
 }
