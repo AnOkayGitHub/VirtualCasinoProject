@@ -44,7 +44,7 @@ public class MainMenu extends Menu {
 		System.out.println("2. I need to log in to my Employee Account.");
 		System.out.println("3. Goodbye!");
 		
-		sleep(waitTime);
+		sleep(waitTime / 2);
 		goTo("GameSelect");
 	}
 
