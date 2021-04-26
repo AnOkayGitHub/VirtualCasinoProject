@@ -20,11 +20,11 @@ public class InputManager {
 				choice = Integer.parseInt(input);
 				
 				if(choice > max) {
-					System.out.println(String.format("Invalid input. Please select a valid menu option (1-%s).", max));
+					System.out.println(String.format("Invalid input. Please input a valid option.", max));
 					choice = -1;
 				}
 			} catch(Exception e) {
-				System.out.println(String.format("Invalid input. Please select a numeric value listed above (1-%s).", max));
+				System.out.println(String.format("Invalid input. Please input a numeric value.", max));
 				choice = -1;
 			}
 			
