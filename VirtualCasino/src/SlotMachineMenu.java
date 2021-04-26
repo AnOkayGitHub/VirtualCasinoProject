@@ -78,8 +78,11 @@ public class SlotMachineMenu extends Menu {
 	
 	private void animate(int[] grid) throws InterruptedException {
 		
+		// Animate 30 times
 		for(int i = 0; i < 30; i++) {
+			// Shift everything right once, 3 times
 			for(int j = 0; j < 3; j++) {
+				// Shift right once
 				int temp = grid[grid.length - 1];
 				for(int k = grid.length - 1; k > 0; k --) {
 					grid[k] = grid[k - 1];
