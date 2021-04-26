@@ -47,6 +47,11 @@ public class Menu implements MenuAttributes {
 		System.out.println(String.format("\n%s: %s\n", speaker, message));
 	}
 
+	protected void machinePrint(String machineFace) {
+		String outline = "-----";
+		System.out.println(String.format("%s\n%1s%s", outline, machineFace, outline));
+	}
+	
 	@Override
 	public void goTo(String target) throws InterruptedException {
 		Casino.setCurrentMenu(target);

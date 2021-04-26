@@ -10,6 +10,8 @@ public class SlotMachineMenu extends Menu {
 	private int money;
 	private boolean isWorking;			//random chance for machine to break
 	private Scanner input = new Scanner(System.in);
+	private String grid[] = new String[9];
+	private String machineFace;
 	
 	public SlotMachineMenu(String id) {
 		super(id);
@@ -46,66 +48,68 @@ public class SlotMachineMenu extends Menu {
 	}
 	
 	private void playGame() throws InterruptedException {
-		int grid[] = new int[9];
-		int betAmmount = 0;
-		for(int i = 0; i < grid.length; ++i)
-			grid[i] = (int) (1 + Math.random() * 7);
+		
+		String[] icons = new String[] {"!", "@", "#", "$", "&", "%", "+", "|"};
+		for(int i = 0; i < grid.length; ++i) {
+			grid[i] = icons[new Random().nextInt(icons.length)];
+		}
+		
+		int betAmount = 0;
 		clear();
 		printBanner("Casino - Slot Machine");
 		userPrint("Front Desk Assistant", "Enjoy!");
 		
-		System.out.println("-------------------");
-		System.out.println("|  " + grid[0] + "     " + grid[1] + "     " + grid[2] + "  |");
-		System.out.println("|  " + grid[3] + "     " + grid[4] + "     " + grid[5] + "  |");
-		System.out.println("|  " + grid[6] + "     " + grid[7] + "     " + grid[8] + "  |");
-		System.out.println("-------------------");
 		
-		animate(grid);
+		UpdateMachineFace();
+		machinePrint(machineFace);
 		
-		System.out.println("How much money would you like to bet: ");
+		animate();
 		
-		while(betAmmount == 0) {
+		userPrint("Machine", "Place your bet!");
+		betAmount = InputManager.GetMenuOptionInput(money);
+		
+		while(betAmount == 0) {
 			try {
-				betAmmount = Integer.parseInt(input.nextLine());
+				betAmount = Integer.parseInt(input.nextLine());
 			} catch(Exception e) {
 				
 			}
 		}
 		
+	}
+	
+	private void UpdateMachineFace() {
+		machineFace = "";
 		
-		double randomNum;
-		for(int i = 0; i < grid.length; ++i) {
-			randomNum = 1 + (Math.random() * 8);
-			grid[i] = (int)randomNum;
+		for(int i = 0; i < grid.length; i += 3) {
+			machineFace += String.format("%s %s %s\n", grid[i], grid[i + 1], grid[i + 2]);
 		}
-		
 		
 	}
 	
-	private void animate(int[] grid) throws InterruptedException {
+	private void animate() throws InterruptedException {
 		
 		// Animate 30 times
 		for(int i = 0; i < 30; i++) {
 			// Shift everything right once, 3 times
 			for(int j = 0; j < 3; j++) {
 				// Shift right once
-				int temp = grid[grid.length - 1];
+				String temp = grid[grid.length - 1];
 				for(int k = grid.length - 1; k > 0; k --) {
 					grid[k] = grid[k - 1];
 				}
 				grid[0] = temp;
 			}
 			
-			sleep(150);
-			clear();
+			// Gradually sleep a longer amount
+			sleep((int) (20 * (i / 2)));
+			
+			// Clear & display
 			clear();
 			printBanner("Casino - Slot Machine");
 			userPrint("Front Desk Assistant", "Enjoy!");
-			System.out.println("-------------------");
-			System.out.println("|  " + grid[0] + "     " + grid[1] + "     " + grid[2] + "  |");
-			System.out.println("|  " + grid[3] + "     " + grid[4] + "     " + grid[5] + "  |");
-			System.out.println("|  " + grid[6] + "     " + grid[7] + "     " + grid[8] + "  |");
-			System.out.println("-------------------");
+			UpdateMachineFace();
+			machinePrint(machineFace);
 		}
 	}
 }
