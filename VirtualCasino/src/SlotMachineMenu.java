@@ -1,5 +1,11 @@
 import java.util.*;
 
+/**
+ * 
+ * @author Ryan, Nick
+ *
+ */
+
 public class SlotMachineMenu extends Menu {
 	private int money;
 	private boolean isWorking;			//random chance for machine to break
