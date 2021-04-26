@@ -1,3 +1,5 @@
+import java.util.concurrent.TimeUnit;
+
 /**
  * Superclass for menus
  */
@@ -46,8 +48,9 @@ public class Menu implements MenuAttributes {
 	}
 
 	@Override
-	public void goTo(String target) {
-		System.out.println("This should not be called!");
+	public void goTo(String target) throws InterruptedException {
+		Casino.setCurrentMenu(target);
+		Casino.UpdateMenu();
 	}
 
 	@Override
@@ -58,5 +61,10 @@ public class Menu implements MenuAttributes {
 	@Override
 	public String getID() {
 		return id;
+	}
+	
+	@Override
+	public void sleep(int waitTime) throws InterruptedException {
+		TimeUnit.SECONDS.sleep(waitTime);
 	}
 }

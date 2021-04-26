@@ -28,12 +28,13 @@ public class MainMenu extends Menu {
 		clear();
 		printBanner("Welcome to the Virtual Casino!");
 		
-		TimeUnit.SECONDS.sleep(waitTime);
+		// Delay
+		sleep(waitTime);
 		
 		clear();
 		printBanner("Enjoy your stay! :)");
 		
-		TimeUnit.SECONDS.sleep(waitTime);
+		sleep(waitTime);
 		
 		clear();
 		printBanner("Casino - Front Desk");
@@ -43,7 +44,8 @@ public class MainMenu extends Menu {
 		System.out.println("2. I need to log in to my Employee Account.");
 		System.out.println("3. Goodbye!");
 		
-		
+		sleep(waitTime);
+		goTo("GameSelect");
 	}
 
 }

@@ -19,6 +19,7 @@ public class GameSelectMenu extends Menu {
 
 	@Override
 	public void display() {
+		clear();
 		System.out.println("Select a game: ");
 	}
 

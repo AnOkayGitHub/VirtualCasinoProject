@@ -13,7 +13,7 @@ public interface MenuAttributes {
 	 * Moves to the new target menu.
 	 * @param target The target menu ID to move to.
 	 */
-	public void goTo(String target);
+	public void goTo(String target) throws InterruptedException;
 	
 	/**
 	 * Displays the contents of the menu.
@@ -26,4 +26,6 @@ public interface MenuAttributes {
 	 * @return String ID.
 	 */
 	public String getID();
+	
+	public void sleep(int waitTime) throws InterruptedException;
 }
