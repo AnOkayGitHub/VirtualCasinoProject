@@ -4,7 +4,6 @@ public class Blackjack extends Menu {
 	private int money;
 	private boolean isWorking;			//random chance for machine to break
 	private Scanner input = new Scanner(System.in);
-	private String yes = "yes";
 	
 	
 
@@ -43,6 +42,8 @@ public class Blackjack extends Menu {
 			}
 	
 	private void playGame() throws InterruptedException {
+		String yes = "YES";
+		String no = "NO";
 		int card1 = (int) (1 + Math.random() * 10);
 	    int card2 = (int) (1 + Math.random() * 10);
 	    int betAmount = 0;
@@ -57,10 +58,11 @@ public class Blackjack extends Menu {
 				
 			}
 		}
-		System.out.println("The total of your two cards is: ");
+		System.out.println("The total of your two cards is: " + cardTotal);
 		
+		while(isWorking = true) {
 		if (cardTotal < 21) {	
-		System.out.println("Do you want to hit?");
+		System.out.println("Do you want to hit? Say YES or NO.");
 		String response = input.nextLine();
 			if (response.equals(yes)) {
 				int card3 = (int) (1 + Math.random() * 10);
@@ -70,9 +72,13 @@ public class Blackjack extends Menu {
 			}
 		
 		} else if (cardTotal > 21) {
-		System.out.println("Sorry, you busted.");
+		System.out.println("Sorry, you busted. Please try again.");
 		loseGame();
+		
+		}else if (cardTotal == 21) {
+		System.out.println("Congratulations, you got blackjack!");
 	}
 		
+}
 }
 }
