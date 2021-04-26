@@ -5,7 +5,7 @@ import java.io.IOException;
  */
 
 /**
- * @author Nick
+ * @author Nick, Ryan
  *
  */
 public class CasinoTester {
