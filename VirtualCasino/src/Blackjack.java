@@ -15,10 +15,6 @@ public class Blackjack extends Menu {
 	}
 		@Override
 	public void display() throws InterruptedException {
-			clear();
-			printBanner("Casino - Blackjack");
-			userPrint("Front Desk Assistant", "Enjoy!");
-		
 			playGame();
 		
 	}
@@ -46,7 +42,7 @@ public class Blackjack extends Menu {
 					isWorking = false;
 			}
 	
-	public void playGame() {
+	private void playGame() throws InterruptedException {
 		int card1 = (int) (1 + Math.random() * 10);
 	    int card2 = (int) (1 + Math.random() * 10);
 	    int betAmount = 0;
