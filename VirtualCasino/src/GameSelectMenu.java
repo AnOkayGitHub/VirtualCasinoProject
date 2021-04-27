@@ -20,24 +20,34 @@ public class GameSelectMenu extends Menu {
 	@Override
 	public void display() throws InterruptedException {
 		clear();
-		printBanner("Casino - Game Select Lobby");
-		userPrint("Front Desk Assistant", "Which game would you like to play?");
+		printBanner("Casino - Game Lobby");
+		userPrint("Game Lobby Sign", "Slot Machines - Left\n\t\t Blackjack Tables - Right\n\t\t Exit - Back");
 		
-		System.out.println("1. Slot Machine");
-		System.out.println("2. Blackjack.");
-		
-		int choice = InputManager.getIntegerFromUser(2);
+		System.out.println("Which way will you go?");
+		String choice = InputManager.getChoiceFromUser(new String[] {"LEFT", "RIGHT", "BACK"}).toUpperCase();
 		
 		switch(choice) {
-		case 1:
-			goTo("SlotMachine");
-			break;
-		case 2:
-			goTo("Blackjack");
-			break;
-		default:
-			break;
-	}
+			case "LEFT":
+				clear();
+				System.out.println("You walk left towards the slot machines.");
+				sleep(3000);
+				goTo("SlotMachine");
+				break;
+			case "RIGHT":
+				clear();
+				System.out.println("You walk right towards the Blackjack table.");
+				sleep(3000);
+				goTo("Blackjack");
+				break;
+			case "BACK":
+				clear();
+				System.out.println("You walk back to the front desk.");
+				sleep(3000);
+				goTo("Main");
+				break;
+			default:
+				break;
+		}	
 	}
 
 }

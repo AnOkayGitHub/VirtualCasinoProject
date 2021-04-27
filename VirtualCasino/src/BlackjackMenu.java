@@ -19,7 +19,6 @@ public class BlackjackMenu extends Menu {
 		@Override
 	public void display() throws InterruptedException {
 			playGame();
-		
 	}
 	public void winGame(int winnings) throws InterruptedException {
 		Casino.setPlayerMoney(money + winnings);

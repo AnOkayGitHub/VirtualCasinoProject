@@ -9,9 +9,11 @@ public class EmployeeLoginMenu extends Menu {
 		clear();
 		printBanner("Casino - Employee Login Terminal");
 		userPrint("Employee Portal", "Please enter your user ID below.");
-		int uid = InputManager.getIntegerFromUser(-1);
+		
+		// 9999 is max for a 4 digit input
+		int uid = InputManager.getIntegerFromUser(9999);
 		
 		userPrint("Employee Portal", "Please enter your PIN below.");
-		int pin = InputManager.getIntegerFromUser(-1);
+		int pin = InputManager.getIntegerFromUser(9999);
 	}
 }

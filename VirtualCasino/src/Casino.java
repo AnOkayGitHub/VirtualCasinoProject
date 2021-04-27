@@ -17,7 +17,7 @@ public class Casino {
 	 * @throws InterruptedException
 	 */
 	public static void initialize() throws InterruptedException {
-		menus = new Menu[] { new MainMenu("Main"), new GameSelectMenu("GameSelect"), 
+		menus = new Menu[] { new MainMenu("Main"), new GameSelectMenu("GameSelect"), new EmployeeLoginMenu("ELogin"), 
 				new SlotMachineMenu("SlotMachine"), new BlackjackMenu("Blackjack"), new ExitMenu("Exit") };
 		currentMenu = menus[0];
 		

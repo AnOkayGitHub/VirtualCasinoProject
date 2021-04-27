@@ -12,6 +12,9 @@ public class SlotMachineMenu extends Menu {
 	private Scanner input = new Scanner(System.in);
 	private String grid[] = new String[9];
 	private String machineFace;
+	private String[] standard = new String[] {"@", "#", "&", "%"};
+	private String[] bonus = new String[] {"!", "$", "+"};
+	private int betAmount = 0;
 	
 	public SlotMachineMenu(String id) {
 		super(id);
@@ -22,19 +25,6 @@ public class SlotMachineMenu extends Menu {
 	@Override
 	public void display() throws InterruptedException {
 		playGame();
-	}
-	
-	private int winGame() {
-		//UNFINISHED
-		//most return money to user
-		//user is not defined yet
-		return money;
-	}
-	
-	private void loseGame() {
-		//will take money from user
-		//UNFINISHED
-		//user is not defined yet
 	}
 
 	private void breakMachine() {
@@ -49,25 +39,78 @@ public class SlotMachineMenu extends Menu {
 	
 	private void playGame() throws InterruptedException {
 		
-		String[] icons = new String[] {"!", "@", "#", "$", "&", "%", "+", "|"};
+
 		for(int i = 0; i < grid.length; ++i) {
-			grid[i] = icons[new Random().nextInt(icons.length)];
+			if(new Random().nextInt(2) == 1) {
+				grid[i] = bonus[new Random().nextInt(bonus.length)];
+			} else {
+				grid[i] = standard[new Random().nextInt(standard.length)];
+			}
+			
 		}
 		
-		int betAmount = 0;
+		
 		clear();
 		printBanner("Casino - Slot Machine");
-		userPrint("Front Desk Assistant", "Enjoy!");
-		
-		
-		updateMachineFace();
-		machinePrint(machineFace);
-		
-		animate();
-		
 		userPrint("Machine", String.format("You have $%s! Place your bet!", money));
 		betAmount = InputManager.getIntegerFromUser(money);
+		sleep(3000);
 		
+		clear();
+		updateMachineFace();
+		machinePrint(machineFace);
+		animate();
+		
+		checkWin();
+	}
+	
+	private void checkWin() throws InterruptedException {
+		boolean found = false;
+		
+		for(int i = 0; i < grid.length; i += 3) {
+			if(grid[i].equals(grid[i + 1]) && grid[i].equals(grid[i + 2])) {
+				if(arrContains(standard, grid[i])) {
+					money += betAmount;
+					userPrint("Machine", String.format("You matched 3 standard icons! You now have $%s.", money));
+				} else {
+					money += betAmount * 4;
+					userPrint("Machine", String.format("WOW! You matched 3 bonus icons! You now have $%s!", money));
+				}
+				found = true;
+			}
+ 		}
+		
+		if(!found) {
+			userPrint("Machine", "No matches! Want to play Again? (Yes / No)");
+			money -= betAmount;
+		}
+		
+		Casino.setPlayerMoney(money);
+		String choice = InputManager.getChoiceFromUser(new String[] {"YES", "NO"});
+		
+		if(choice.toUpperCase().compareTo("YES") == 0) {
+			clear();
+			printBanner("Casino - Slot Machine");
+			userPrint("Machine", "Starting new game...");
+			sleep(3000);
+			goTo("SlotMachine");
+		} else {
+			clear();
+			printBanner("Casino - Slot Machine");
+			userPrint("Machine", "Thank you for your money - I mean time.");
+			sleep(3000);
+			goTo("Main");
+		}
+		
+	}
+	
+	private boolean arrContains(String[] arr, String val) {
+		for(String s : arr) {
+			if(s.equals(val)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	private void updateMachineFace() {
@@ -99,7 +142,6 @@ public class SlotMachineMenu extends Menu {
 			// Clear & display
 			clear();
 			printBanner("Casino - Slot Machine");
-			userPrint("Front Desk Assistant", "Enjoy!");
 			updateMachineFace();
 			machinePrint(machineFace);
 		}

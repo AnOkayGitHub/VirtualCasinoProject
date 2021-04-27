@@ -7,6 +7,7 @@ import java.util.Scanner;
  */
 
 public class InputManager {
+	
 	public static int getIntegerFromUser(int max) {
 		Scanner scanner = new Scanner(System.in);
 
