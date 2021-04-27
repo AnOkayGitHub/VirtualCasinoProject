@@ -22,7 +22,7 @@ public class MainMenu extends Menu {
 	@Override
 	public void display() throws InterruptedException {
 		// Time between each menu clear (seconds)
-		int waitTime = 1000;
+		int waitTime = 3000;
 		
 		// Clear and print display information
 		clear();
@@ -44,7 +44,7 @@ public class MainMenu extends Menu {
 		System.out.println("2. I need to log in to my Employee Account.");
 		System.out.println("3. Goodbye!");
 		
-		int choice = InputManager.GetIntegerFromUser(3);
+		int choice = InputManager.getIntegerFromUser(3);
 		
 		userPrint("Front Desk Assistant", "Right this way!");
 		sleep(waitTime);

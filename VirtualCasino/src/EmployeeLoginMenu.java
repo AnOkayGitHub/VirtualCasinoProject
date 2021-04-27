@@ -9,9 +9,9 @@ public class EmployeeLoginMenu extends Menu {
 		clear();
 		printBanner("Casino - Employee Login Terminal");
 		userPrint("Employee Portal", "Please enter your user ID below.");
-		int uid = InputManager.GetIntegerFromUser(-1);
+		int uid = InputManager.getIntegerFromUser(-1);
 		
 		userPrint("Employee Portal", "Please enter your PIN below.");
-		int pin = InputManager.GetIntegerFromUser(-1);
+		int pin = InputManager.getIntegerFromUser(-1);
 	}
 }

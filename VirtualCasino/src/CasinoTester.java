@@ -12,7 +12,7 @@ public class CasinoTester {
 
 	public static void main(String[] args) throws InterruptedException, IOException {
 		// Start the casino
-		Casino.Initialize();
+		Casino.initialize();
 	}
 
 }

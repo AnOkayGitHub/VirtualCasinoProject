@@ -16,7 +16,7 @@ public class SlotMachineMenu extends Menu {
 	public SlotMachineMenu(String id) {
 		super(id);
 		isWorking = true;
-		money = 10000;
+		money = Casino.getPlayerMoney();
 	}
 	
 	@Override
@@ -60,25 +60,17 @@ public class SlotMachineMenu extends Menu {
 		userPrint("Front Desk Assistant", "Enjoy!");
 		
 		
-		UpdateMachineFace();
+		updateMachineFace();
 		machinePrint(machineFace);
 		
 		animate();
 		
-		userPrint("Machine", "Place your bet!");
-		betAmount = InputManager.GetIntegerFromUser(money);
-		
-		while(betAmount == 0) {
-			try {
-				betAmount = Integer.parseInt(input.nextLine());
-			} catch(Exception e) {
-				
-			}
-		}
+		userPrint("Machine", String.format("You have $%s! Place your bet!", money));
+		betAmount = InputManager.getIntegerFromUser(money);
 		
 	}
 	
-	private void UpdateMachineFace() {
+	private void updateMachineFace() {
 		machineFace = "";
 		
 		for(int i = 0; i < grid.length; i += 3) {
@@ -108,7 +100,7 @@ public class SlotMachineMenu extends Menu {
 			clear();
 			printBanner("Casino - Slot Machine");
 			userPrint("Front Desk Assistant", "Enjoy!");
-			UpdateMachineFace();
+			updateMachineFace();
 			machinePrint(machineFace);
 		}
 	}

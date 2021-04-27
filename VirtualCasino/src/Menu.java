@@ -55,7 +55,7 @@ public class Menu implements MenuAttributes {
 	@Override
 	public void goTo(String target) throws InterruptedException {
 		Casino.setCurrentMenu(target);
-		Casino.UpdateMenu();
+		Casino.updateMenu();
 	}
 
 	@Override

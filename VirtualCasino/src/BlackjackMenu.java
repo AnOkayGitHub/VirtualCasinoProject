@@ -14,64 +14,60 @@ public class BlackjackMenu extends Menu {
 	public BlackjackMenu(String id) {
 		super(id);
 		isWorking = true;
-		money = 10000;
+		money = Casino.getPlayerMoney();
 	}
 		@Override
 	public void display() throws InterruptedException {
 			playGame();
 		
 	}
-	public int winGame() {
-		//UNFINISHED
-		//most return money to user
-		//user is not defined yet
-		return money;
+	public void winGame(int winnings) {
+		Casino.setPlayerMoney(money + winnings);
+		
+		clear();
+		printBanner("Casino - Blackjack Table");
+		userPrint("Dealer", String.format("You won the hand, here are your winnings. You now have $%s!", Casino.getPlayerMoney()));
 	}
 	
-	public void loseGame() {
-		//will take money from user
-		//UNFINISHED
-		//user is not defined yet
+	public void loseGame(int losingAmount) {
+		Casino.setPlayerMoney(money - losingAmount);
 		
+		clear();
+		printBanner("Casino - Blackjack Table");
+		userPrint("Dealer", String.format("You lost the hand, I'll be taking your money. You now have $%s!", Casino.getPlayerMoney()));
 	}
 	
 	public void breakMachine() {
-		/*		double randomNum = 1 + (Math.random() * 101);
-				if((int)randomNum > 99) 
-					isWorking = false;
-					*/
-				double randomNum = 1 + (Math.random() * 6);
-				if((int)randomNum >= 3) 
-					isWorking = false;
-			}
+/*		double randomNum = 1 + (Math.random() * 101);
+		if((int)randomNum > 99) 
+			isWorking = false;
+			*/
+		double randomNum = 1 + (Math.random() * 6);
+		if((int)randomNum >= 3) 
+			isWorking = false;
+	}
 	
 	private void playGame() throws InterruptedException {
-		String yes = "YES";
-		String no = "NO";
 		int card1 = (int) (1 + Math.random() * 10);
 	    int card2 = (int) (1 + Math.random() * 10);
-	    int betAmount = 0;
 	    int cardTotal = card1 + card2;
 	    
 	    clear();
 	    printBanner("Casino - Blackjack Table");
 		userPrint("Dealer", "How much money would you like to bet?");
 		
-		betAmount = InputManager.GetIntegerFromUser(money);
-		
-		clear();
-		printBanner("Casino - Blackjack Table");
-		userPrint("Dealer", "The total of your two cards is: " + cardTotal + ".");
+		int betAmount = InputManager.getIntegerFromUser(money);
+
 		
 		while(isWorking = true) {
 			
 			if (cardTotal < 21) {	
 				clear();
 				printBanner("Casino - Blackjack Table");
-				userPrint("Dealer", "Do you want to hit? (Yes/No)");
+				userPrint("Dealer", "What do you want to do? (Hit or Stand)\nCurrent hand: " + cardTotal + ".");
 				
-				String response = InputManager.GetChoiceFromUser(new String[] {"Yes", "No"});
-				if (response.toUpperCase().equals(yes)) {
+				String response = InputManager.getChoiceFromUser(new String[] { "HIT", "STAND" });
+				if (response.toUpperCase().equals("HIT")) {
 					int card3 = (int) (1 + Math.random() * 10);
 					cardTotal += card3;
 					clear();
@@ -79,21 +75,51 @@ public class BlackjackMenu extends Menu {
 					userPrint("Dealer", "The new total of yours cards is: " + cardTotal);
 					sleep(3000);
 				} else {
-					// User does NOT want a hit
+					// User wants to stand
+					int dCard1 = (int) (1 + Math.random() * 10);
+				    int dCard2 = (int) (1 + Math.random() * 10);
+				    int dTotal = dCard1 + dCard2;
+				    
+				    while(dTotal < 17) {
+				    	int dCard3 = (int) (1 + Math.random() * 10);
+				    	dTotal += dCard3;
+				    }
+				    
+				    if(dTotal > 21 && cardTotal < 21) {
+				    	clear();
+						printBanner("Casino - Blackjack Table");
+						userPrint("Dealer", "I Busted! I had " + dTotal + "!");
+						sleep(3000);
+						winGame(betAmount * 5);
+				    } else if(cardTotal > dTotal) {
+				    	clear();
+						printBanner("Casino - Blackjack Table");
+						userPrint("Dealer", "I had " + dTotal + "!");
+						sleep(3000);
+						winGame(betAmount * 5);
+				    } else if(cardTotal < dTotal) {
+						loseGame(betAmount * 5);
+				    } else {
+				    	clear();
+						printBanner("Casino - Blackjack Table");
+						userPrint("Dealer", "Tie!");
+				    }
 					return;
 				}
 			
 			} else if (cardTotal > 21) {
 				clear();
 				printBanner("Casino - Blackjack Table");
-				userPrint("Dealer", "Sorry, you busted. Please try again.");
-				loseGame();
+				userPrint("Dealer", "Sorry, you busted. Try again!");
+				loseGame(betAmount * 5);
 				return;
 				
 			} else if (cardTotal == 21) {
 				clear();
 				printBanner("Casino - Blackjack Table");
 				userPrint("Dealer", "Congratulations, you got blackjack!");
+				sleep(3000);
+				winGame(betAmount * 5);
 				return;
 			}
 		}
