@@ -16,6 +16,11 @@ public class SlotMachineMenu extends Menu {
 	private String[] bonus = new String[] {"!", "$", "+"};
 	private int betAmount = 0;
 	
+	/*
+	 * Accesses Menu
+	 * Assigns the machine to be true signifying that it is not broken
+	 * Gets the players money from the Casino class and assigns it locally 
+	 */
 	public SlotMachineMenu(String id) {
 		super(id);
 		isWorking = true;
@@ -27,6 +32,10 @@ public class SlotMachineMenu extends Menu {
 		playGame();
 	}
 
+	/*
+	 *Method to give the machine a 1% chance to break 
+	 */
+	
 	private void breakMachine() {
 /*		double randomNum = 1 + (Math.random() * 101);
 		if((int)randomNum > 99) 
@@ -121,7 +130,7 @@ public class SlotMachineMenu extends Menu {
 		}
 		
 	}
-	
+	// Allows the slot machine have a spinning animation
 	private void animate() throws InterruptedException {
 		
 		// Animate 30 times

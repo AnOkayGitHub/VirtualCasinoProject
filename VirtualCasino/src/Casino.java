@@ -40,7 +40,7 @@ public class Casino {
 	}
 	
 	/**
-	 * Getters & Setters
+	 * Getters & Setters for the menu and player money
 	 */
 	
 	public static Menu getCurrentMenu() {

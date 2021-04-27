@@ -69,6 +69,10 @@ public class BlackjackMenu extends Menu {
 		}
 	}
 	
+	/*
+	 *Method to give the machine a 1% chance to break 
+	 */
+	
 	public void breakMachine() {
 /*		double randomNum = 1 + (Math.random() * 101);
 		if((int)randomNum > 99) 
@@ -149,14 +153,22 @@ public class BlackjackMenu extends Menu {
 					return;
 				}
 			
-			} else if (cardTotal > 21) {
+			} 
+			/*Condition for going over 21 and busting
+			 *The user loses their money the game ends
+			 */
+			else if (cardTotal > 21) {
 				clear();
 				printBanner("Casino - Blackjack Table");
 				userPrint("Dealer", "Sorry, you busted. Try again!");
 				loseGame(betAmount );
 				return;
 				
-			} else if (cardTotal == 21) {
+			} 
+			/*
+			 * Condition for getting 21 and getting blackjack
+			 */
+			else if (cardTotal == 21) {
 				clear();
 				printBanner("Casino - Blackjack Table");
 				userPrint("Dealer", "Congratulations, you got blackjack!");
