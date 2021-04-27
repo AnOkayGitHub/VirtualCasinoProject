@@ -10,7 +10,7 @@
  */
 
 public class MainMenu extends Menu {
-	
+	private static boolean hasEntered = false;
 	/**
 	 * Passes the ID to the superclass.
 	 * @param id The ID of the menu.
@@ -24,17 +24,20 @@ public class MainMenu extends Menu {
 		// Time between each menu clear (seconds)
 		int waitTime = 3000;
 		
-		// Clear and print display information
-		clear();
-		printBanner("Welcome to the Virtual Casino!");
-		
-		// Delay
-		sleep(waitTime);
-		
-		clear();
-		printBanner("Enjoy your stay! :)");
-		
-		sleep(waitTime);
+		if(!hasEntered) {
+			// Clear and print display information
+			clear();
+			printBanner("Welcome to the Virtual Casino!");
+			
+			// Delay
+			sleep(waitTime);
+			
+			clear();
+			printBanner("Enjoy your stay! :)");
+			
+			sleep(waitTime);
+			hasEntered = true;
+		}
 		
 		clear();
 		printBanner("Casino - Front Desk");
