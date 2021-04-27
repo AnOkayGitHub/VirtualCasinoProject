@@ -1,3 +1,8 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 /**
  *  Handles Casino Logic
  */
@@ -15,6 +20,7 @@ public class Casino {
 	/**
 	 * Initializes the casino.
 	 * @throws InterruptedException
+	 * @throws IOException 
 	 */
 	public static void initialize() throws InterruptedException {
 		menus = new Menu[] { new MainMenu("Main"), new GameSelectMenu("GameSelect"), new EmployeeLoginMenu("ELogin"), 
@@ -37,6 +43,18 @@ public class Casino {
 		}
 		
 		return null;
+	}
+	
+	public static void ReportBrokenMachine(String id, String desc) throws IOException {
+		File reports = new File("reports.txt");
+		
+		if(!reports.exists()) {
+			reports.createNewFile();
+		}
+
+		FileWriter writer = new FileWriter(reports, true);
+		writer.append("Machine ID #" + id + " is down for: " + desc + ".\n");
+		writer.close();
 	}
 	
 	/**
