@@ -88,56 +88,60 @@ public class BlackjackMenu extends Menu {
 		sleep(3000);
 			
 		if (cardTotal < 21) {	
-			clear();
-			printBanner("Casino - Blackjack Table");
-			userPrint("Dealer", "What do you want to do? (Hit or Stand)\nCurrent hand: " + cardTotal + ".");
-			
-			String response = InputManager.getChoiceFromUser(new String[] { "HIT", "STAND" });
-			if (response.toUpperCase().equals("HIT")) {
-				int card3 = (int) (1 + Math.random() * 10);
-				cardTotal += card3;
+			String response = "";
+			while(!response.equals("STAND") && cardTotal < 21) {
 				clear();
 				printBanner("Casino - Blackjack Table");
-				userPrint("Dealer", "The new total of yours cards is: " + cardTotal);
-				sleep(3000);
-			} else {
-				// User wants to stand
-				int dCard1 = (int) (1 + Math.random() * 10);
-			    int dCard2 = (int) (1 + Math.random() * 10);
-			    int dTotal = dCard1 + dCard2;
-			    
-			    while(dTotal < 17) {
-			    	int dCard3 = (int) (1 + Math.random() * 10);
-			    	dTotal += dCard3;
-			    }
-			    
-			    if(dTotal > 21 && cardTotal < 21) {
-			    	clear();
+				userPrint("Dealer", "What do you want to do? (Hit or Stand)\nCurrent hand: " + cardTotal + ".");
+				response = InputManager.getChoiceFromUser(new String[] { "HIT", "STAND" });
+				if (response.toUpperCase().equals("HIT")) {
+					int card3 = (int) (1 + Math.random() * 10);
+					cardTotal += card3;
+					clear();
 					printBanner("Casino - Blackjack Table");
-					userPrint("Dealer", "I Busted! I had " + dTotal + "!");
+					userPrint("Dealer", "The new total of yours cards is: " + cardTotal);
 					sleep(3000);
-					winGame(betAmount );
-			    } else if(cardTotal > dTotal) {
-			    	clear();
-					printBanner("Casino - Blackjack Table");
-					userPrint("Dealer", "I had " + dTotal + "!");
-					sleep(3000);
-					winGame(betAmount );
-			    } else if(cardTotal < dTotal) {
-			    	clear();
-					printBanner("Casino - Blackjack Table");
-					userPrint("Dealer", "I had " + dTotal + "!");
-					sleep(3000);
-					loseGame(betAmount );
-			    } else {
-			    	clear();
-					printBanner("Casino - Blackjack Table");
-					userPrint("Dealer", "Tie!");
-			    }
-				return;
+				} else {
+					// User wants to stand, calculate dealer hand
+					int dCard1 = (int) (1 + Math.random() * 10);
+				    int dCard2 = (int) (1 + Math.random() * 10);
+				    int dTotal = dCard1 + dCard2;
+				    
+				    while(dTotal < 17) {
+				    	int dCard3 = (int) (1 + Math.random() * 10);
+				    	dTotal += dCard3;
+				    }
+				    
+				    if(dTotal > 21 && cardTotal < 21) {
+				    	clear();
+						printBanner("Casino - Blackjack Table");
+						userPrint("Dealer", "I Busted! I had " + dTotal + "!");
+						sleep(3000);
+						winGame(betAmount );
+				    } else if(cardTotal > dTotal) {
+				    	clear();
+						printBanner("Casino - Blackjack Table");
+						userPrint("Dealer", "I had " + dTotal + "!");
+						sleep(3000);
+						winGame(betAmount );
+				    } else if(cardTotal < dTotal) {
+				    	clear();
+						printBanner("Casino - Blackjack Table");
+						userPrint("Dealer", "I had " + dTotal + "!");
+						sleep(3000);
+						loseGame(betAmount );
+				    } else {
+				    	clear();
+						printBanner("Casino - Blackjack Table");
+						userPrint("Dealer", "Tie!");
+				    }
+					return;
+				}
 			}
 		
-		} else if (cardTotal > 21) {
+		}
+		
+		if (cardTotal > 21) {
 			clear();
 			printBanner("Casino - Blackjack Table");
 			userPrint("Dealer", "Sorry, you busted. Try again!");
