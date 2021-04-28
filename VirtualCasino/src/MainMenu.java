@@ -43,6 +43,7 @@ public class MainMenu extends Menu {
 		printBanner("Casino - Front Desk");
 		userPrint("Front Desk Assistant", "How can I help you today?");
 		
+		// Menu to choose between playing a game, logging in as an employee or leaving the casino
 		System.out.println("1. I'd like to play a game.");
 		System.out.println("2. I need to log in to my Employee Account.");
 		System.out.println("3. Goodbye!");
@@ -52,6 +53,7 @@ public class MainMenu extends Menu {
 		userPrint("Front Desk Assistant", "Right this way!");
 		sleep(waitTime);
 		
+		// Will bring the user to either the games employee login or leaving casino based on their input of 1 2 or 3
 		switch(choice) {
 			case 1:
 				goTo("GameSelect");
