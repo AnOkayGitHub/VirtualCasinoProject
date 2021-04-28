@@ -45,20 +45,23 @@ public class Casino {
 		return null;
 	}
 	
+	// Creates a text file for broken machines
 	public static void ReportBrokenMachine(String id, String desc) throws IOException {
 		File reports = new File("reports.txt");
 		
+		//If the file does not exist already it will create the file
 		if(!reports.exists()) {
 			reports.createNewFile();
 		}
 
+		//If the machine is broken it writes the machines id and reason its down to a text file
 		FileWriter writer = new FileWriter(reports, true);
 		writer.append("Machine ID #" + id + " is down for: " + desc + ".\n");
 		writer.close();
 	}
 	
 	/**
-	 * Getters & Setters
+	 * Getters & Setters for the menu and player money
 	 */
 	
 	public static Menu getCurrentMenu() {

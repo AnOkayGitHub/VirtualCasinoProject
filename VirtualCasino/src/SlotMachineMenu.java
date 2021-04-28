@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -9,6 +8,7 @@ import java.util.*;
 
 public class SlotMachineMenu extends Menu {
 	private int money;
+	private boolean isWorking;			//random chance for machine to break
 	private Scanner input = new Scanner(System.in);
 	private String grid[] = new String[9];
 	private String machineFace;
@@ -16,8 +16,14 @@ public class SlotMachineMenu extends Menu {
 	private String[] bonus = new String[] {"!", "$", "+"};
 	private int betAmount = 0;
 	
+	/*
+	 * Accesses Menu
+	 * Assigns the machine to be true signifying that it is not broken
+	 * Gets the players money from the Casino class and assigns it locally 
+	 */
 	public SlotMachineMenu(String id) {
 		super(id);
+		isWorking = true;
 		money = Casino.getPlayerMoney();
 	}
 	
@@ -26,23 +32,23 @@ public class SlotMachineMenu extends Menu {
 		playGame();
 	}
 
-	private void testMachine() throws InterruptedException {
-		double randomNum = 1 + (Math.random() * 101);
-		int chance = 5;
-		if((int)randomNum <= chance) { 
-			try {
-				Casino.ReportBrokenMachine((int) Math.floor(1 + (Math.random() * 9999)) + "", "Machine Broken");
-				
-				userPrint("Manager", "Uh-oh! Looks like this machine is out of business! Sorry! Please use another machine.\nOur high tech software can transfer your session seamlessly to a new machine. We've also given you $500 for the inconvenience.");
-				Casino.setPlayerMoney(Casino.getPlayerMoney() + 500);
-				sleep(15000);
-			} catch (IOException e) {
-				System.out.println("File not created.");
-			}
-		}
+	/*
+	 *Method to give the machine a 1% chance to break 
+	 */
+	
+	private void breakMachine() {
+/*		double randomNum = 1 + (Math.random() * 101);
+		if((int)randomNum > 99) 
+			isWorking = false;
+			*/
+		double randomNum = 1 + (Math.random() * 6);
+		if((int)randomNum >= 3) 
+			isWorking = false;
 	}
 	
 	private void playGame() throws InterruptedException {
+		
+
 		for(int i = 0; i < grid.length; ++i) {
 			if(new Random().nextInt(2) == 1) {
 				grid[i] = bonus[new Random().nextInt(bonus.length)];
@@ -51,6 +57,7 @@ public class SlotMachineMenu extends Menu {
 			}
 			
 		}
+		
 		
 		clear();
 		printBanner("Casino - Slot Machine");
@@ -67,8 +74,6 @@ public class SlotMachineMenu extends Menu {
 	}
 	
 	private void checkWin() throws InterruptedException {
-		testMachine();
-		
 		boolean found = false;
 		
 		for(int i = 0; i < grid.length; i += 3) {
@@ -88,8 +93,6 @@ public class SlotMachineMenu extends Menu {
 			userPrint("Machine", "No matches! Want to play Again? (Yes / No)");
 			money -= betAmount;
 		}
-		
-		
 		
 		Casino.setPlayerMoney(money);
 		String choice = InputManager.getChoiceFromUser(new String[] {"YES", "NO"});
@@ -127,7 +130,7 @@ public class SlotMachineMenu extends Menu {
 		}
 		
 	}
-	
+	// Allows the slot machine have a spinning animation
 	private void animate() throws InterruptedException {
 		
 		// Animate 30 times
