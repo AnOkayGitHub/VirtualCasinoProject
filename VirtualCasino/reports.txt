@@ -1,1 +1,3 @@
-Machine ID #1234 is down for: Machine Broken
+Machine ID #4321 is down for: Machine Broken
+Machine ID #8765 is down for: Machine Broken
+Machine ID #9876 is down for: Machine Broken

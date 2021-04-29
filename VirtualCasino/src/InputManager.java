@@ -58,4 +58,30 @@ public class InputManager {
 		}
 		return choice;
 	}
+	
+	public static String getChoiceFromUser(int len) {
+		Scanner scanner = new Scanner(System.in);
+		String choice = "";
+		
+		while(choice.compareTo("") == 0) {
+			System.out.print(">: ");
+			choice = scanner.nextLine();
+			
+			try {
+				int newChoice = Integer.parseInt(choice);
+				
+				if(choice.length() != len) {
+					System.out.println(String.format("Invalid input. Please input a %s character value.", len));
+					choice = "";
+				} 
+			} catch(Exception e) {
+				System.out.println(String.format("Invalid input. Please input a %s character value.", len));
+				choice = "";
+			}
+			
+			
+			
+		}
+		return choice;
+	}
 }
