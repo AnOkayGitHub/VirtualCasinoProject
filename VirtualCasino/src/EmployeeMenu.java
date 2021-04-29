@@ -1,5 +1,6 @@
 
 public class EmployeeMenu extends Menu {
+	
 	public EmployeeMenu(String id) {
 		super(id);
 	}
@@ -38,26 +39,42 @@ public class EmployeeMenu extends Menu {
 		
 		sleep(3000);
 		
-		if()
+		/*if(broken machine exists) {
+			then fix machine
+			something like
+			"Slot Machine is broken please go fix it"
+			thinking maybe put this code in fixSlot()
+		}
+		else{
+			print statement saying everything is working
+			returning to Employee Menu
+		}
+		*/
 		
-		System.out.println("1. Slot Machines");
-		System.out.println();
-		
+		sleep(3000);
+		display();
 	}
 	
 	public void testGames() {
 		
+		
 	}
 	
-	public void logOut() {
+	public void logOut() throws InterruptedException {
+		clear();
+		printBanner("Casino - Logging Out");
+		userPrint("Employee Terminal", "Logging out. Please wait...");
 		
+		sleep(3000);
+		
+		userPrint("Employee Terminal", "Log out successful, Thank you.");
+		
+		sleep(1500);
+		
+		goTo("Main");
 	}
 	
 	private void fixSlot() {
 		
-	}
-	
-	private void fixJack() {
-		
-	}
+	}		
 }
