@@ -138,7 +138,6 @@ public class BlackjackMenu extends Menu {
 					return;
 				}
 			}
-		
 		}
 		
 		if (cardTotal > 21) {
