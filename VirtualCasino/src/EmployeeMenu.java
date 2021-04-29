@@ -62,7 +62,7 @@ public class EmployeeMenu extends Menu {
 			System.out.println(String.format("%s. Exit", num + 1));
 			scanner.close();
 		} catch (FileNotFoundException e) {
-			userPrint("Terminal", "File was not found!");
+			userPrint("Terminal", "Nothing needs fixing!");
 		}
 	
 		sleep(3000);
