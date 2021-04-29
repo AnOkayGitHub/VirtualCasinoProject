@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Menu subclass for the Employee's menu.
+ * @author Nick, Matt, Ryan, Brandon
+ *
+ */
+
 public class EmployeeMenu extends Menu {
 	
 	ArrayList<String> machinesToFix = new ArrayList<String>();
@@ -14,6 +20,10 @@ public class EmployeeMenu extends Menu {
 			"I don't get paid enough for this.", "How am I going to fix this...", "Is it time to go home yet?", "Easy fix!",  
 			"I got grease on my new pants!", "I deserve a raise.", "Another easy fix!" };
 	
+	/**
+	 * Constructor.
+	 * @param id The ID of the menu.
+	 */
 	public EmployeeMenu(String id) {
 		super(id);
 	}
@@ -41,6 +51,10 @@ public class EmployeeMenu extends Menu {
 		}
 	}
 	
+	/**
+	 * Displays the fix menu.
+	 * @throws InterruptedException
+	 */
 	public void fixMenu() throws InterruptedException {
 		clear();
 		printBanner("Employee Portal - Machine Status Menu");
@@ -53,6 +67,7 @@ public class EmployeeMenu extends Menu {
 		try {
 			Scanner scanner = new Scanner(file);
 			
+			// Display the machines that need fixing.
 			while(scanner.hasNextLine()) {
 				num ++;
 				String machine = scanner.nextLine();
@@ -69,6 +84,10 @@ public class EmployeeMenu extends Menu {
 		fixSlot(num);
 	}
 	
+	/**
+	 * Log out and return to main.
+	 * @throws InterruptedException
+	 */
 	public void logOut() throws InterruptedException {
 		clear();
 		printBanner("Employee Portal - Logging Out");
@@ -83,10 +102,16 @@ public class EmployeeMenu extends Menu {
 		goTo("Main");
 	}
 	
+	/**
+	 * Fixes a slot machine and removes it from the list.
+	 * @param num The number of machines.
+	 * @throws InterruptedException
+	 */
 	private void fixSlot(int num) throws InterruptedException {
 		userPrint("Terminal", "Which machine would you like to fix?");
 		int choice = InputManager.getIntegerFromUser(num + 1);
 		
+		// Exit.
 		if(choice == num + 1) {
 			logOut();
 		}
@@ -112,7 +137,6 @@ public class EmployeeMenu extends Menu {
 			System.out.println(fixPrompts[index]);
 			sleep(2500 * (1 + new Random().nextInt(3)));
 		}
-		
 		
 		try {
 			// Replace the old reports file with a blank text file

@@ -1,10 +1,18 @@
-
+/**
+ * Menu subclass for the Employee Portal login.
+ * @author Nick, Matt, Ryan, Brandon
+ *
+ */
 public class EmployeeLoginMenu extends Menu {
 	String[] ids = new String[] { "1234", "0000", "9876", "8675" };
 	String[] pins = new String[] { "1234", "1111", "5432", "3099" };
 	String[] usernames = new String[] { "Nick", "Brandom", "Matt", "Ryan" };
 	private boolean isLoggedIn = false;
 	
+	/**
+	 * Constructor.
+	 * @param id The ID of the menu.
+	 */
 	protected EmployeeLoginMenu(String id) {
 		super(id);
 	}
@@ -33,6 +41,13 @@ public class EmployeeLoginMenu extends Menu {
 		goTo("EMenu");
 	}
 	
+	/**
+	 * Validate a login.
+	 * @param id The UID of the user.
+	 * @param p The PIN of the user.
+	 * @return boolean : whether or not the login was successful.
+	 * @throws InterruptedException
+	 */
 	private boolean validate(String id, String p) throws InterruptedException {
 		isLoggedIn = false;
 		for(int i = 0; i < ids.length; i++) {

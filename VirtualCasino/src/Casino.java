@@ -1,20 +1,17 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 
 /**
- *  Handles Casino Logic
- */
-
-/**
- * @author Nick, Ryan
+ * Handles Casino logic.
+ * 
+ * @author Nick, Matt, Ryan, Brandon
  *
  */
 public class Casino {
-	private static Menu[] menus;
-	private static Menu currentMenu;
-	private static int playerMoney = 10000;
+	private static Menu[] menus;				// An array of all menus in the program.
+	private static Menu currentMenu;			// The current menu we are in.
+	private static int playerMoney = 10000;		// The player's starting money.
 	
 	
 	/**
@@ -23,6 +20,7 @@ public class Casino {
 	 * @throws IOException 
 	 */
 	public static void initialize() throws InterruptedException {
+		// Initialize menus and displays the starting menu.
 		menus = new Menu[] { new MainMenu("Main"), new GameSelectMenu("GameSelect"), new EmployeeLoginMenu("ELogin"), 
 				new SlotMachineMenu("SlotMachine"), new BlackjackMenu("Blackjack"), new ExitMenu("Exit"), 
 				new EmployeeMenu("EMenu")};
@@ -31,18 +29,25 @@ public class Casino {
 		currentMenu.display();
 	}
 	
+	/**
+	 * Update the current menu.
+	 * @throws InterruptedException
+	 */
 	public static void updateMenu() throws InterruptedException {
 		currentMenu.display();
 	}
 	
+	/**
+	 * Get a menu from an ID.
+	 * @param id The ID to search for.
+	 * @return A Menu matching the ID, null if not found.
+	 */
 	public static Menu getMenuFromID(String id) {
-		
 		for(int i = 0; i < menus.length; i++) {
 			if(menus[i].getID().compareTo(id) == 0) {
 				return menus[i];
 			}
 		}
-		
 		return null;
 	}
 	

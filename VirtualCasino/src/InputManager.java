@@ -1,13 +1,18 @@
 import java.util.Scanner;
 
 /**
- * 
- * @author Nick
+ * Helper class for handling input from the user.
+ * @author Nick, Matt, Ryan, Brandon
  *
  */
 
 public class InputManager {
 	
+	/**
+	 * Get an integer value between 0-max.
+	 * @param max The max value the user can enter.
+	 * @return The integer the user input.
+	 */
 	public static int getIntegerFromUser(int max) {
 		Scanner scanner = new Scanner(System.in);
 
@@ -33,6 +38,11 @@ public class InputManager {
 		return choice;
 	}
 	
+	/**
+	 * Get a choice from a user.
+	 * @param choices The array of choices the user can choose from.
+	 * @return String : the choice selected.
+	 */
 	public static String getChoiceFromUser(String[] choices) {
 		Scanner scanner = new Scanner(System.in);
 		String choicesText = "";
@@ -59,6 +69,11 @@ public class InputManager {
 		return choice;
 	}
 	
+	/**
+	 * Get an integer choice from user with a specific length as a string.
+	 * @param len The length of the number.
+	 * @return A string representing a number of len size.
+	 */
 	public static String getChoiceFromUser(int len) {
 		Scanner scanner = new Scanner(System.in);
 		String choice = "";

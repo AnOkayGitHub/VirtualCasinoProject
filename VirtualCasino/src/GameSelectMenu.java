@@ -1,5 +1,5 @@
 /**
- * Subclass For Game Select Menu
+- * Subclass For Game Select Menu
  */
 
 /**
@@ -25,7 +25,7 @@ public class GameSelectMenu extends Menu {
 		printBanner("Casino - Game Lobby");
 		userPrint("Game Lobby Sign", "Slot Machines - Left\n\t\t Blackjack Tables - Right\n\t\t Exit - Back");
 		
-	// Prompts user and asks for input on which game they would like to play
+		// Prompts user and asks for input on which game they would like to play
 		System.out.println("Which way will you go?");
 		String choice = InputManager.getChoiceFromUser(new String[] {"LEFT", "RIGHT", "BACK"}).toUpperCase();
 		

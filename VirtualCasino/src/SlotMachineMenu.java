@@ -3,7 +3,7 @@ import java.util.*;
 
 /**
  * 
- * @author Ryan, Nick
+ * @author Nick, Matt, Ryan, Brandon
  *
  */
 
@@ -16,16 +16,26 @@ public class SlotMachineMenu extends Menu {
 	private String[] bonus = new String[] {"!", "$", "+"};
 	private int betAmount = 0;
 	
+	/**
+	 * Constructor.
+	 * @param id The ID of the menu.
+	 */
 	public SlotMachineMenu(String id) {
 		super(id);
+		// The starting money.
 		money = Casino.getPlayerMoney();
 	}
 	
 	@Override
 	public void display() throws InterruptedException {
+		// Play the game.
 		playGame();
 	}
 
+	/**
+	 * Randomize a machine breaking.
+	 * @throws InterruptedException
+	 */
 	private void testMachine() throws InterruptedException {
 		double randomNum = 1 + (Math.random() * 101);
 		int chance = 5;
@@ -42,6 +52,10 @@ public class SlotMachineMenu extends Menu {
 		}
 	}
 	
+	/**
+	 * Handles game logic.
+	 * @throws InterruptedException
+	 */
 	private void playGame() throws InterruptedException {
 		for(int i = 0; i < grid.length; ++i) {
 			if(new Random().nextInt(2) == 1) {
@@ -66,6 +80,10 @@ public class SlotMachineMenu extends Menu {
 		checkWin();
 	}
 	
+	/**
+	 * Check if we have won the game!
+	 * @throws InterruptedException
+	 */
 	private void checkWin() throws InterruptedException {
 		testMachine();
 		
@@ -89,8 +107,6 @@ public class SlotMachineMenu extends Menu {
 			money -= betAmount;
 		}
 		
-		
-		
 		Casino.setPlayerMoney(money);
 		String choice = InputManager.getChoiceFromUser(new String[] {"YES", "NO"});
 		
@@ -110,6 +126,12 @@ public class SlotMachineMenu extends Menu {
 		
 	}
 	
+	/**
+	 * Check if the array contains the value specified.
+	 * @param arr The array to check (String).
+	 * @param val The value to search for (String).
+	 * @return Boolean : Whether or not it was found.
+	 */
 	private boolean arrContains(String[] arr, String val) {
 		for(String s : arr) {
 			if(s.equals(val)) {
@@ -119,15 +141,21 @@ public class SlotMachineMenu extends Menu {
 		return false;
 	}
 	
+	/**
+	 * Update the machine face when we animate.
+	 */
 	private void updateMachineFace() {
 		machineFace = "";
 		
 		for(int i = 0; i < grid.length; i += 3) {
 			machineFace += String.format("%s %s %s\n", grid[i], grid[i + 1], grid[i + 2]);
 		}
-		
 	}
 	
+	/**
+	 * Animate the machine face.
+	 * @throws InterruptedException
+	 */
 	private void animate() throws InterruptedException {
 		
 		// Animate 30 times

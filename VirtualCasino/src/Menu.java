@@ -1,11 +1,8 @@
 import java.util.concurrent.TimeUnit;
 
 /**
- * Superclass for menus
- */
-
-/**
- * @author Nick, Ryan
+ * Superclass for the menus.
+ * @author Nick, Matt, Ryan, Brandon
  *
  */
 public class Menu implements MenuAttributes {

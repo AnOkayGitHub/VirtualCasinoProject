@@ -1,11 +1,7 @@
 import java.io.IOException;
-
 /**
- *  Casino Testing Class
- */
-
-/**
- * @author Nick, Ryan
+ * Main 
+ * @author Nick, Matt, Ryan, Brandon
  *
  */
 public class CasinoTester {

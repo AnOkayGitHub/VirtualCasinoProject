@@ -4,7 +4,7 @@
  */
 
 /**
- * @author Nick, Ryan
+ * @author Nick, Matt, Ryan, Brandon
  *
  */
 public interface MenuAttributes {

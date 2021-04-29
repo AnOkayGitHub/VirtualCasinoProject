@@ -1,10 +1,5 @@
-
-
 /**
- * Main Menu Child
- */
-
-/**
+ * Menu subclass that handles the Main Menu.
  * @author Nick, Ryan
  *
  */
