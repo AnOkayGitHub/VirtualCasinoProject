@@ -9,6 +9,8 @@ import java.util.Scanner;
 public class EmployeeMenu extends Menu {
 	
 	ArrayList<String> machinesToFix = new ArrayList<String>();
+	
+	// Array for Employee dialog when fixing machine
 	String[] fixPrompts = new String[] { "The spin button seems stuck...", "Need a new cash validator!", "A crack in the screen!",
 			"This one is falling apart.", "How did that even happen?", "The LEDs are kinda dim.", "I need a new toolbox.", 
 			"I don't get paid enough for this.", "How am I going to fix this...", "Is it time to go home yet?", "Easy fix!",  
@@ -21,14 +23,18 @@ public class EmployeeMenu extends Menu {
 	@Override
 	public void display() throws InterruptedException {
 		clear();
+		
+		// Employee is can choose to check the machines or log out
 		printBanner("Employee Portal - Main Menu");
 		userPrint("Terminal", "Please select an option below.");
 		
 		System.out.println("1. Check Machines.");
 		System.out.println("2. Log out of Employee Terminal.");
 		
+		//Takes user input
 		int choice = InputManager.getIntegerFromUser(3);
 		
+		//Based on the employees choice, It will allow them to check the machines or log out of the menu
 		switch(choice) {
 		case 1:
 			fixMenu();
@@ -41,6 +47,7 @@ public class EmployeeMenu extends Menu {
 		}
 	}
 	
+	//Checking status of machiens and fixing them
 	public void fixMenu() throws InterruptedException {
 		clear();
 		printBanner("Employee Portal - Machine Status Menu");
@@ -48,6 +55,7 @@ public class EmployeeMenu extends Menu {
 		
 		sleep(3000);
 		
+		//Creates a file that stores all of the broken machines 
 		File file = new File("reports.txt");
 		int num = 0;
 		try {
@@ -61,6 +69,8 @@ public class EmployeeMenu extends Menu {
 			}
 			System.out.println(String.format("%s. Exit", num + 1));
 			scanner.close();
+			
+			// Prints if nothing needs to be fixed
 		} catch (FileNotFoundException e) {
 			userPrint("Terminal", "Nothing needs fixing!");
 		}
@@ -69,6 +79,7 @@ public class EmployeeMenu extends Menu {
 		fixSlot(num);
 	}
 	
+	//Logging out of employee terminal 
 	public void logOut() throws InterruptedException {
 		clear();
 		printBanner("Employee Portal - Logging Out");
@@ -83,6 +94,7 @@ public class EmployeeMenu extends Menu {
 		goTo("Main");
 	}
 	
+	//Asks the employee what machine they want to fix and asks for their input
 	private void fixSlot(int num) throws InterruptedException {
 		userPrint("Terminal", "Which machine would you like to fix?");
 		int choice = InputManager.getIntegerFromUser(num + 1);
@@ -91,10 +103,13 @@ public class EmployeeMenu extends Menu {
 			logOut();
 		}
 		
+		//Sends employee to broken machine
 		userPrint("Terminal", String.format("You got it! Sending over %s.", machinesToFix.get(choice - 1).substring(0, 16)));
 		sleep(3000);
 		
 		clear();
+		
+		//Machine fix flavor text
 		printBanner("Casino - Repair Room");
 		System.out.println("You walk over to the Repair Room and see the machine.");
 		sleep(1500);
@@ -107,6 +122,8 @@ public class EmployeeMenu extends Menu {
 		for(int i = 0; i < 6; i ++) {
 			clear();
 			printBanner("Casino - Repair Room");
+			
+			//Prints out a random response from the employee when fixing the machine
 			int index = new Random().nextInt(fixPrompts.length);
 			
 			System.out.println(fixPrompts[index]);

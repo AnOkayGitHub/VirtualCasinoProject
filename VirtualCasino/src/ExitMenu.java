@@ -6,6 +6,7 @@ public class ExitMenu extends Menu {
 	}
 	
 	@Override
+	//Exiting the casino from the main menu / front desk
 	public void display() {
 		clear();
 		printBanner("Casino - Exit");
