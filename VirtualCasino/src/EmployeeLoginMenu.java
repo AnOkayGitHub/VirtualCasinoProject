@@ -5,7 +5,7 @@ public class EmployeeLoginMenu extends Menu {
 	}
 	
 	@Override
-	public void display() {
+	public void display() throws InterruptedException {
 		clear();
 		printBanner("Casino - Employee Login Terminal");
 		userPrint("Employee Portal", "Please enter your user ID below.");
@@ -15,5 +15,7 @@ public class EmployeeLoginMenu extends Menu {
 		
 		userPrint("Employee Portal", "Please enter your PIN below.");
 		int pin = InputManager.getIntegerFromUser(9999);
+		
+		goTo("EMenu");//TEMP CODE PLEASE REMOVE ONCE WORKING
 	}
 }
