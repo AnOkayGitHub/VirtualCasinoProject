@@ -30,17 +30,23 @@ public class BlackjackMenu extends Menu {
 		playGame();
 	}
 	
-	public void endGame(int winnings) throws InterruptedException {
-		Casino.setPlayerMoney(money + winnings);
+	public void endGame(int winnings, int betAmount) throws InterruptedException {
+		
 		
 		if(winnings > 0) {
+			Casino.setPlayerMoney(money + winnings);
 			clear();
 			printBanner("Casino - Blackjack Table");
 			userPrint("Dealer", String.format("You won the hand, here are your winnings. You now have $%s!", Casino.getPlayerMoney()));
-		} else {
+		} else if(winnings < 0) {
 			clear();
 			printBanner("Casino - Blackjack Table");
 			userPrint("Dealer", String.format("You lost the hand. Thank you for your donation to the Casino. You now have $%s!", Casino.getPlayerMoney()));
+		} else if(winnings == betAmount) {
+			Casino.setPlayerMoney(money + winnings);
+			clear();
+			printBanner("Casino - Blackjack Table");
+			userPrint("Dealer", String.format("Since we tied I guess you can have your money back. You have $%s again.", Casino.getPlayerMoney()));
 		}
 		
 		sleep(2000);
@@ -84,6 +90,8 @@ public class BlackjackMenu extends Menu {
 		
 		//Recieves user bet
 		int betAmount = InputManager.getIntegerFromUser(money);
+		money -= betAmount;
+		Casino.setPlayerMoney(money);
 		
 		clear();
 		printBanner("Casino - Blackjack Table");
@@ -130,14 +138,14 @@ public class BlackjackMenu extends Menu {
 						printBanner("Casino - Blackjack Table");
 						userPrint("Dealer", "I Busted! I had " + dTotal + "!");
 						sleep(3000);
-						endGame(betAmount);
+						endGame(betAmount * 2, betAmount);
 						 //Condition for the user winning by beating the dealer with no one busting
 				    } else if(cardTotal > dTotal) {
 				    	clear();
 						printBanner("Casino - Blackjack Table");
 						userPrint("Dealer", "I had " + dTotal + "!");
 						sleep(3000);
-						endGame(betAmount);
+						endGame(betAmount * 2, betAmount);
 						
 						 //Condition for the dealer winning by beating the user with no one busting
 				    } else if(cardTotal < dTotal) {
@@ -145,13 +153,15 @@ public class BlackjackMenu extends Menu {
 						printBanner("Casino - Blackjack Table");
 						userPrint("Dealer", "I had " + dTotal + "!");
 						sleep(3000);
-						endGame(-betAmount);
+						endGame(-betAmount, betAmount);
 						
 						//Condition for the user and the dealer getting the same number which results in a tie
 				    } else {
 				    	clear();
 						printBanner("Casino - Blackjack Table");
 						userPrint("Dealer", "Tie!");
+						sleep(3000);
+						endGame(betAmount, betAmount);
 				    }
 					return;
 				}
@@ -163,16 +173,16 @@ public class BlackjackMenu extends Menu {
 			clear();
 			printBanner("Casino - Blackjack Table");
 			userPrint("Dealer", "Sorry, you busted. Try again!");
-			endGame(-betAmount);
+			endGame(-betAmount, betAmount);
 			return;
 			
 			// Condition for winning and getting blackjack
 		} else if (cardTotal == 21) {
 			clear();
 			printBanner("Casino - Blackjack Table");
-			userPrint("Dealer", "Congratulations, you got blackjack!");
+			userPrint("Dealer", "x4 Multiplier! You got blackjack!");
 			sleep(3000);
-			endGame(betAmount);
+			endGame(betAmount * 4, betAmount);
 			return;
 		}
 	}

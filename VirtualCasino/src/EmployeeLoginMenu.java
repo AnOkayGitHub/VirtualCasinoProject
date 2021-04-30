@@ -37,6 +37,7 @@ public class EmployeeLoginMenu extends Menu {
 			userPrint("Employee Portal", "Exiting...");
 			sleep(1500);	
 			goTo("Main");
+			return;
 		}
 		
 		String pin = InputManager.getChoiceFromUser(4);
@@ -58,6 +59,7 @@ public class EmployeeLoginMenu extends Menu {
 				userPrint("Employee Portal", "Exiting...");
 				sleep(1500);	
 				goTo("Main");
+				return;
 			}
 			pin = InputManager.getChoiceFromUser(4);
 		}
