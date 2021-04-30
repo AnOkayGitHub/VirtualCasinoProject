@@ -22,13 +22,13 @@ public class MainMenu extends Menu {
 		if(!hasEntered) {
 			// Clear and print display information
 			clear();
-			printBanner("Welcome to the Virtual Casino!");
+			userPrint("Greeter", "Welcome to the Virtual Casino!");
 			
 			// Delay
 			sleep(waitTime);
 			
 			clear();
-			printBanner("Enjoy your stay! :)");
+			userPrint("Greeter", "Enjoy your stay! :)");
 			
 			sleep(waitTime);
 			hasEntered = true;

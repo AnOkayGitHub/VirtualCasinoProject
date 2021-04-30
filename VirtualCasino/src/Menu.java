@@ -21,7 +21,7 @@ public class Menu implements MenuAttributes {
 	 * Mimics clearing the console by printing many empty lines.
 	 */
 	protected void clear() {
-		for(int i = 0; i < 50; i++) {
+		for(int i = 0; i < 100; i++) {
 			System.out.println("");
 		}
 	}
@@ -32,7 +32,7 @@ public class Menu implements MenuAttributes {
 	 */
 	protected void printBanner(String message) {
 		String bar = "--------------------------------------------------";
-		System.out.println(String.format("%s\n%s\n%s", bar, message, bar));
+		System.out.println(String.format("%s\n%s - Wallet: $%s\n%s", bar, message, Casino.getPlayerMoney(), bar));
 	}
 	
 	/**

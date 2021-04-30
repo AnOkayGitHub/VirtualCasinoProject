@@ -12,7 +12,7 @@ public class SlotMachineMenu extends Menu {
 	private Scanner input = new Scanner(System.in);
 	private String grid[] = new String[9]; // used to hold the slot machine symbols 
 	private String machineFace; //What gets displayed to the user when playing the slots
-	private String[] standard = new String[] {"@", "#", "&", "%"}; // Standard symbols of the slot machine
+	private String[] standard = new String[] {"@", "#", "%", "&", "*", "-", ">", "<", "L" }; // Standard symbols of the slot machine
 	private String[] bonus = new String[] {"!", "$", "+"}; // Bonus symbols of the slot machine
 	private int betAmount = 0; // User's bet
 	
@@ -28,6 +28,16 @@ public class SlotMachineMenu extends Menu {
 	
 	@Override
 	public void display() throws InterruptedException {
+		money = Casino.getPlayerMoney();
+		if(Casino.getPlayerMoney() <= 0) {
+			clear();
+			printBanner("Casino - Blackjack Table");
+			userPrint("Machine", String.format("Wait...you're broke?! Get out!"));
+			sleep(5000);
+			goTo("Exit");
+			return;
+		}
+		
 		// Play the game.
 		playGame();
 	}
@@ -76,6 +86,8 @@ public class SlotMachineMenu extends Menu {
 		//Asks the user for their bet and takes their money that they input
 		userPrint("Machine", String.format("You have $%s! Place your bet!", money));
 		betAmount = InputManager.getIntegerFromUser(money);
+		money -= betAmount;
+		Casino.setPlayerMoney(money);
 		sleep(3000);
 		
 		clear();
@@ -102,22 +114,33 @@ public class SlotMachineMenu extends Menu {
 				
 				//When the user gets 3 standard symbols they win the game and money is added to their total
 				if(arrContains(standard, grid[i])) {
-					money += betAmount;
+					money += betAmount * 2;
+					Casino.setPlayerMoney(money);
 					userPrint("Machine", String.format("You matched 3 standard icons! You now have $%s.", money));
-					
+					sleep(1000);
 				//When the user gets 3 bonus icons they win the game and money is added to their total 
 				} else {
 					money += betAmount * 4;
+					Casino.setPlayerMoney(money);
 					userPrint("Machine", String.format("WOW! You matched 3 bonus icons! You now have $%s!", money));
 				}
 				found = true;
 			}
  		}
 		
+		sleep(3000);
+		
 		//If the user does not match 3 icons bonus or standard, they lose the game and money is taken from their account
 		if(!found) {
+			clear();
+			printBanner("Casino - Slot Machine");
+			System.out.println(machineFace);
 			userPrint("Machine", "No matches! Want to play Again? (Yes / No)");
-			money -= betAmount;
+		} else {
+			clear();
+			printBanner("Casino - Slot Machine");
+			System.out.println(machineFace);
+			userPrint("Machine", "That was lucky! Want to play Again? (Yes / No)");
 		}
 
 		//Changes users money and asks if they would like to play again

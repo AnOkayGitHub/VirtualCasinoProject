@@ -12,11 +12,20 @@ public class BlackjackMenu extends Menu {
 	 */
 	public BlackjackMenu(String id) {
 		super(id);
-		
+		money = Casino.getPlayerMoney();
 	}
 	
 	@Override
 	public void display() throws InterruptedException {
+		money = Casino.getPlayerMoney();
+		if(Casino.getPlayerMoney() <= 0) {
+			clear();
+			printBanner("Casino - Blackjack Table");
+			userPrint("Dealer", String.format("You have no money! Get out!"));
+			sleep(3000);
+			goTo("Exit");
+			return;
+		}
 		// Start the game
 		playGame();
 	}

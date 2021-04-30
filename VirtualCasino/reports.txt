@@ -1,3 +1,9 @@
 Machine ID #4321 is down for: Machine Broken
 Machine ID #8765 is down for: Machine Broken
-Machine ID #9876 is down for: Machine Broken
+Machine ID #9910 is down for: Machine Broken
+Machine ID #0909 is down for: Machine Broken
+Machine ID #1123 is down for: Machine Broken
+Machine ID #4565 is down for: Machine Broken
+Machine ID #1337 is down for: Machine Broken
+Machine ID #5434 is down for: Machine Broken
+Machine ID #1222 is down for: Machine Broken
