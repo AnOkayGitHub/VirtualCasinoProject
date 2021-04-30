@@ -1,4 +1,3 @@
-import java.util.Scanner;
 /**
  * Menu subclass for the BlackJack game.
  * @author Nick, Matt, Ryan, Brandon
@@ -6,8 +5,6 @@ import java.util.Scanner;
  */
 public class BlackjackMenu extends Menu {
 	private int money;
-	private Scanner input = new Scanner(System.in);
-	
 	
 	/**
 	 * Constructor.
